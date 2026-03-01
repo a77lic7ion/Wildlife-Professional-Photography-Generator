@@ -10,18 +10,49 @@ interface Question {
   id: string;
   title: string;
   text: string;
+  subtext?: string;
   type: string;
   placeholder?: string;
-  options: any[];
+  options?: any[];
+  getOptions?: (answers: any) => any[];
 }
 
 interface QuestionStepProps {
   question: Question;
   value: any;
   onChange: (value: any) => void;
+  answers: any;
 }
 
-export const QuestionStep: React.FC<QuestionStepProps> = ({ question, value, onChange }) => {
+export const QuestionStep: React.FC<QuestionStepProps> = ({ question, value, onChange, answers }) => {
+  const options = question.getOptions ? question.getOptions(answers) : (question.options || []);
+
+  if (question.type === 'chip-grid') {
+    return (
+      <div className="animate-fade-slide">
+        <div className="text-[11px] font-mono tracking-[0.20em] text-[#b8860b] mb-4 uppercase">{question.title}</div>
+        <h2 className="text-[28px] font-serif text-white mb-2">{question.text}</h2>
+        {question.subtext && <p className="text-sm font-mono text-white/50 mb-8">{question.subtext}</p>}
+        
+        <div className="flex flex-wrap gap-2">
+          {options.map((opt: string) => (
+            <button
+              key={opt}
+              onClick={() => onChange(opt)}
+              className={`px-4 py-2 rounded text-sm font-mono transition-colors border cursor-pointer ${
+                value === opt 
+                  ? 'bg-[#b8860b]/15 border-[#b8860b] text-white' 
+                  : 'bg-white/5 border-white/10 text-white/60 hover:border-white/30'
+              }`}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   if (question.type === 'text-chip') {
     return (
       <div className="animate-fade-slide">
@@ -37,7 +68,7 @@ export const QuestionStep: React.FC<QuestionStepProps> = ({ question, value, onC
         />
         
         <div className="flex flex-wrap gap-2">
-          {question.options.map((opt: string) => (
+          {options.map((opt: string) => (
             <button
               key={opt}
               onClick={() => onChange(opt)}
@@ -59,10 +90,11 @@ export const QuestionStep: React.FC<QuestionStepProps> = ({ question, value, onC
     return (
       <div className="animate-fade-slide">
         <div className="text-[11px] font-mono tracking-[0.20em] text-[#b8860b] mb-4 uppercase">{question.title}</div>
-        <h2 className="text-[28px] font-serif text-white mb-8">{question.text}</h2>
+        <h2 className="text-[28px] font-serif text-white mb-2">{question.text}</h2>
+        {question.subtext && <p className="text-sm font-mono text-white/50 mb-8">{question.subtext}</p>}
         
         <div className="flex flex-col gap-[10px]">
-          {question.options.map((opt: any) => {
+          {options.map((opt: any) => {
             const isSelected = value === opt.value;
             return (
               <div
@@ -107,10 +139,11 @@ export const QuestionStep: React.FC<QuestionStepProps> = ({ question, value, onC
     return (
       <div className="animate-fade-slide">
         <div className="text-[11px] font-mono tracking-[0.20em] text-[#b8860b] mb-4 uppercase">{question.title}</div>
-        <h2 className="text-[28px] font-serif text-white mb-8">{question.text}</h2>
+        <h2 className="text-[28px] font-serif text-white mb-2">{question.text}</h2>
+        {question.subtext && <p className="text-sm font-mono text-white/50 mb-8">{question.subtext}</p>}
         
         <div className="flex flex-col gap-[10px]">
-          {question.options.map((opt: any) => {
+          {options.map((opt: any) => {
             const isSelected = selectedValues.includes(opt.value);
             return (
               <div
