@@ -1,23 +1,41 @@
 # Wildlife Prompt Studio
 
-A guided prompt generator for African wildlife fine art photography images, producing copy-ready prompts optimised per AI image model.
+A guided prompt generator for African wildlife fine art photography, motivational posters, and kids' room wall art. Produces copy-ready prompts optimised per AI image model.
 
 ![Wildlife Prompt Studio Hero Image](docs/hero.png)
 
 ## Overview
 
-Wildlife Prompt Studio is a React Single Page Application designed to help creators generate highly detailed, model-specific prompts for AI image generation platforms (like Midjourney, DALL-E 3, Gemini, and Bing). 
+Wildlife Prompt Studio is a React Single Page Application designed to help creators generate highly detailed, model-specific prompts for AI image generation platforms (like Midjourney, DALL-E 3, Gemini, Bing, and Flux models). 
 
-The application asks a short series of guided questions about the desired wildlife image—covering subject, lighting, mood, composition, and output format. It then uses these answers to construct perfectly crafted prompts tailored to the specific syntax and strengths of each AI model.
+The application now features three distinct modes:
+1. **Wildlife Photography Generator:** Create stunning, fine art wildlife photography prompts.
+2. **Motivational Posters:** Generate quote-intelligent, animal-led motivational poster designs.
+3. **Kids Room Wall Art:** Produce warm, safe, and wonder-filled wall art for children.
 
 **Core design philosophy:** Dark, editorial, premium. Think luxury safari field journal. Black backgrounds, amber/gold accents, monospace type. Clean and purposeful.
 
 ## Features
 
-*   **Guided 7-Step Flow:** Easily select your subject, lighting, mood, composition, output format, variations, and target models.
-*   **Model-Specific Formatting:** Prompts are automatically formatted for the specific requirements of ChatGPT/DALL-E 3, Bing Image Creator, Midjourney (including `--ar` and `--v` tags), and Gemini/Imagen 3.
-*   **Etsy-Optimised Resolutions:** Output formats are specifically tailored for large Etsy wall prints (e.g., 2:3 Vertical, 16:9 Widescreen, 1:1 Square).
-*   **Randomised Variations:** Generate 1, 2, or 3 variations. The first variation uses your exact selections, while subsequent variations keep the same animal and resolution but completely randomise the lighting, mood, and composition for fresh inspiration within the same fine art style.
+### 1. Wildlife Photography Generator
+*   **Guided Flow:** Select subject, lighting, mood, composition, output format, variations, and target models.
+*   **Etsy-Optimised Resolutions:** Output formats tailored for large Etsy wall prints (e.g., 2:3 Vertical, 16:9 Widescreen, 1:1 Square).
+*   **Randomised Variations:** Generate 1, 2, or 3 variations. The first uses exact selections; subsequent variations keep the animal and resolution but randomise lighting, mood, and composition for fresh inspiration.
+
+### 2. Motivational Posters (v2.0)
+*   **Quote-Intelligent Logic:** The app intelligently cross-references your selected Animal, Challenge, and Feeling against a matrix of 35+ original quotes to find the perfect match.
+*   **Animal Tone Mapping:** Automatically maps animals (e.g., Lion = leadership, Cheetah = speed) to influence quote selection.
+*   **Visual & Typography Specs:** Automatically resolves composition, visual style, and specific typography instructions (including accent word and color descriptor).
+*   **Interactive Quote Preview:** Tap any word in the generated quote preview to instantly reassign the accent word and regenerate all prompts in real-time.
+
+### 3. Kids Room Wall Art (v1.0)
+*   **Age-Appropriate Flow:** Starts by asking for the age group (7-9, 10-12, or 13-16), which filters available animals to only show warm, curious baby/juvenile animals.
+*   **Life Lessons:** Quotes are mapped to specific life lessons like Kindness, Belonging, Individuality, and Resilience.
+*   **Warm & Safe Tone:** Visual style, typography, and accent colors (Sunshine Yellow, Coral, Turquoise, etc.) are specifically tailored to be warm and safe. Includes a comprehensive negative prompt to ensure no scary or aggressive elements.
+*   **Interactive Quote Preview:** Tap any word to change the accent color dynamically.
+
+### General Features
+*   **Model-Specific Formatting:** Prompts are automatically formatted for ChatGPT/DALL-E 3, Bing Image Creator, Midjourney (including `--ar` and `--v` tags), Gemini/Imagen 3, and Flux models.
 *   **API Settings:** A built-in settings modal to securely store your API keys locally in your browser for potential future direct integrations.
 *   **Pure Frontend:** No accounts, no backend, no database. Everything runs locally in your browser.
 
@@ -66,7 +84,7 @@ npm run build
 
 The compiled assets will be available in the `dist` directory, ready to be deployed to platforms like Vercel, Netlify, or GitHub Pages.
 
-## Example Prompts (Subject: Leopard)
+## Example Prompts (Wildlife Photography - Subject: Leopard)
 
 Here are examples of the prompts generated by the application for a Leopard, showcasing the different model outputs and randomised variations.
 
